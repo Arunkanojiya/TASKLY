@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
-const API_URL = 'http://localhost:2000';
+const API_URL = 'https://taskly-7s40.onrender.com';
 
 const Login = ({ onSubmit, onSwitchMode }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
