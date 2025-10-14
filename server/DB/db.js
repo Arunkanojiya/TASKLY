@@ -1,14 +1,24 @@
 import mongoose from "mongoose";
 
+let isConnected = false;
 
 const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URL);
-        console.log("MongoDB connected");
-    } catch (error) {
-        console.log(error);
-        process.exit(1);
-    }
-}
+  if (isConnected) {
+    console.log("MongoDB already connected");
+    return;
+  }
+
+  try {
+    await mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    isConnected = true;
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw error; // allow Vercel to handle the error
+  }
+};
 
 export default connectDB;
