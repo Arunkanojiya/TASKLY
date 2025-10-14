@@ -1,6 +1,7 @@
 import express from 'express';
 import { getCurrentUserController, loginController, registerController, updatePasswordController, updateProfileController } from '../controller/user.controller.js';
 import { authMiddleware } from '../middleware/auth.js';
+import { User } from '../model/user.model.js';
 
 const router = express.Router();
 
@@ -8,6 +9,8 @@ const router = express.Router();
 //public route
 router.post('/register',registerController);
 router.post('/login',loginController);
+
+
 
 
 
