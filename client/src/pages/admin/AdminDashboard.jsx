@@ -14,7 +14,7 @@ const AdminDashboard = ({ admin }) => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:2000/api/admin/users', { headers });
+      const res = await axios.get('https://taskly-7s40.onrender.com/api/admin/users', { headers });
       setUsers(res.data.users || []);
     } catch (err) {
       console.error('Fetch Users Error:', err.response?.data || err.message);

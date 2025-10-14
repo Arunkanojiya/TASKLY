@@ -17,7 +17,7 @@ const AllTasks = () => {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:2000/api/admin/tasks", { headers: getHeaders() });
+      const res = await axios.get("https://taskly-7s40.onrender.com/api/admin/tasks", { headers: getHeaders() });
       setTasks(res.data.tasks || res.data.data || res.data);
       setLoading(false);
     } catch (err) {

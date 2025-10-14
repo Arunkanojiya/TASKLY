@@ -3,7 +3,7 @@ import { Calendar, CheckCircle2, Clock, MoreVertical } from "lucide-react";
 import { format, isToday } from "date-fns";
 import axios from "axios";
 
-const API_BASE = "http://localhost:2000/api/tasks";
+const API_BASE = "https://taskly-7s40.onrender.com/api/tasks";
 
 const getPriorityBadgeColor = (priority) => {
   switch (priority?.toLowerCase()) {

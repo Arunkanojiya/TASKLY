@@ -15,7 +15,7 @@ const ManageUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:2000/api/admin/users", { headers: getHeaders() });
+      const res = await axios.get("https://taskly-7s40.onrender.com/api/admin/users", { headers: getHeaders() });
       const allUsers = res.data.users || res.data;
       const normalUsers = allUsers.filter(
         (u) =>

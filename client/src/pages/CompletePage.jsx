@@ -3,7 +3,7 @@ import axios from "axios";
 import TaskItem from "../components/TaskItem";
 import TaskModal from "../components/TaskModal";
 
-const API_BASE = "http://localhost:2000/api/tasks";
+const API_BASE = "https://taskly-7s40.onrender.com/api/tasks";
 
 const CompletePage = ({ onLogout }) => {
   const [tasks, setTasks] = useState([]);

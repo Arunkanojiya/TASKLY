@@ -29,7 +29,7 @@ const AdminProfile = () => {
   // Fetch admin
   const fetchAdmin = async () => {
     try {
-      const res = await axios.get("http://localhost:2000/api/admin/me", { headers });
+      const res = await axios.get("https://taskly-7s40.onrender.com/api/admin/me", { headers });
       if (res.data.admin) setProfile({ name: res.data.admin.name, email: res.data.admin.email });
     } catch (err) {
       toast.error("Failed to load profile");
