@@ -6,7 +6,7 @@ import { BACK_BUTTON, DANGER_BTN, FULL_BUTTON, INPUT_WRAPPER, personalFields, SE
 import { ChevronLeft, Lock, LogOut, Save, Shield, UserCircle } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:2000';
+const API_URL = 'https://taskly-7s40.onrender.com';
 
 const Profile = ({ setCurrentUser, onLogout }) => {
   const [profile, setProfile] = useState({ name: '', email: '' });

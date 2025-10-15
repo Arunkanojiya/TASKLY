@@ -34,7 +34,7 @@ const AllTasks = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this task?")) return;
     try {
-      await axios.delete(`http://localhost:2000/api/tasks/${id}`, { headers: getHeaders() });
+      await axios.delete(`https://taskly-7s40.onrender.com/api/tasks/${id}`, { headers: getHeaders() });
       fetchTasks();
     } catch (err) {
       console.error("Delete Task Error:", err.response?.data || err.message);

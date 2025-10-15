@@ -23,7 +23,7 @@ const AdminDashboard = ({ admin }) => {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('http://localhost:2000/api/admin/tasks', { headers });
+      const res = await axios.get('https://taskly-7s40.onrender.com/api/admin/tasks', { headers });
       setTasks(res.data.tasks || []);
     } catch (err) {
       console.error('Fetch Tasks Error:', err.response?.data || err.message);

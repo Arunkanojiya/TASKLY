@@ -36,8 +36,8 @@ const ManageUsers = () => {
   const toggleBlock = async (userId, currentStatus) => {
     try {
       const url = currentStatus
-        ? `http://localhost:2000/api/admin/user/unblock/${userId}`
-        : `http://localhost:2000/api/admin/user/block/${userId}`;
+        ? `https://taskly-7s40.onrender.com/api/admin/user/unblock/${userId}`
+        : `https://taskly-7s40.onrender.com/api/admin/user/block/${userId}`;
       await axios.put(url, {}, { headers: getHeaders() });
       fetchUsers();
     } catch (err) {
@@ -50,7 +50,7 @@ const ManageUsers = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:2000/api/admin/users", newUser, { headers: getHeaders() });
+      await axios.post("https://taskly-7s40.onrender.com/api/admin/users", newUser, { headers: getHeaders() });
       setNewUser({ name: "", email: "", password: "" });
       setShowAddForm(false);
       fetchUsers();
