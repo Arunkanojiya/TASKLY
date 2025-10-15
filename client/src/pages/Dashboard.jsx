@@ -35,7 +35,7 @@ const Dashboard = () => {
   const handleSave = useCallback(async (taskData) => {
     try {
       if (taskData._id) {
-        await fetch(`http://localhost:2000/api/tasks/${taskData._id}/gp`, {
+        await fetch(`https://taskly-7s40.onrender.com/api/tasks/${taskData._id}/gp`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const Dashboard = () => {
           body: JSON.stringify(taskData),
         });
       } else {
-        await fetch(`http://localhost:2000/api/tasks/gp`, {
+        await fetch(`https://taskly-7s40.onrender.com/api/tasks/gp`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
