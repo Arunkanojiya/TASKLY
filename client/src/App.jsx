@@ -18,7 +18,7 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import AllTasks from "./pages/admin/AllTasks";
 import AdminProfile from "./components/admin/AdminProfile";
 
-const API_URL = "http://localhost:2000";
+const API_URL = "https://taskly-7s40.onrender.com";
 const API_TASKS = `${API_URL}/api/tasks`;
 
 const App = () => {
@@ -85,7 +85,7 @@ const App = () => {
 
           // Redirect if on login/signup
           if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/") {
-            if (user.role === "admin" || user.role === "superadmin") navigate("/admin", { replace: true });
+            if (user.role === "admin") navigate("/admin", { replace: true });
             else navigate("/", { replace: true });
           }
         } else {
