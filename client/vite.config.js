@@ -6,4 +6,8 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(),tailwindcss()],
   base:"/",
+  build: {
+    sourcemap: true, // ✅ helps you trace errors to original React files
+  },
 })
+
