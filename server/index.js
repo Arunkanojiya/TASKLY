@@ -30,9 +30,9 @@ const PORT = process.env.PORT || 2000;
 app.use(
   cors({
     origin: [
+      "https://taskly-sandy.vercel.app",
       "https://taskly-navy-seven.vercel.app",
-      "https://taskly-6hh116qjs-arun-kanojiyas-projects.vercel.app",
-      "https://taskly-7s40.onrender.com",
+      "https://vercel.com/arun-kanojiyas-projects/taskly/GihaKmyCzYcRRbk9Wsv3rQHizh1T",
       "http://localhost:5173",
     ],
     credentials: true,
