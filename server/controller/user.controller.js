@@ -24,34 +24,38 @@ export const sendRegisterOtpController = async (req, res) => {
 
     const otp = generateOtp();
     const otpExpiry = Date.now() + 10 * 60 * 1000; // 10 mins
-    const hashedPassword = await bcrypt.hash(password, 10); // 🔥 HASH PASSWORD HERE
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // CASE 1 → User exists but not verified (Resend OTP)
     if (existingUser && !existingUser.isVerified) {
       existingUser.name = name;
-      existingUser.password = hashedPassword;   // 🔥 STORE HASHED PASSWORD
+      existingUser.password = hashedPassword;
       existingUser.otp = otp;
       existingUser.otpExpiry = otpExpiry;
 
       await existingUser.save();
 
-      await sendEmail(
-        email,
-        "Your Registration OTP",
-        `Your OTP is: ${otp}\nThis OTP is valid for 10 minutes.`
-      );
-
-      return res.status(200).json({
+      // Respond immediately to frontend
+      res.status(200).json({
         message: "OTP resent successfully!",
         userId: existingUser._id,
       });
+
+      // Send email asynchronously
+      sendEmail(
+        email,
+        "Your Registration OTP",
+        `Your OTP is: ${otp}\nThis OTP is valid for 10 minutes.`
+      ).catch(console.error);
+
+      return; // exit function
     }
 
     // CASE 2 → New user
     const newUser = new User({
       name,
       email,
-      password: hashedPassword,  // 🔥 STORE HASHED PASSWORD
+      password: hashedPassword,
       otp,
       otpExpiry,
       isVerified: false,
@@ -59,16 +63,19 @@ export const sendRegisterOtpController = async (req, res) => {
 
     await newUser.save();
 
-    await sendEmail(
-      email,
-      "Your Registration OTP",
-      `Your OTP is: ${otp}\nThis OTP is valid for 10 minutes.`
-    );
-
-    return res.status(200).json({
+    // Respond immediately to frontend
+    res.status(200).json({
       message: "OTP sent successfully!",
       userId: newUser._id,
     });
+
+    // Send email asynchronously
+    sendEmail(
+      email,
+      "Your Registration OTP",
+      `Your OTP is: ${otp}\nThis OTP is valid for 10 minutes.`
+    ).catch(console.error);
+
   } catch (error) {
     console.log("Send OTP Error:", error);
     return res.status(500).json({ message: "Internal server error" });
@@ -164,9 +171,6 @@ export const loginController = async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
-
-
-
 
 
 
