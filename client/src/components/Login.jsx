@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import OtpVerification from './OtpVerification';
 
-const API_URL = 'https://taskly-7s40.onrender.com/api/users';
+const API_URL = 'https://taskly-1i5r.onrender.com/api/users';
 
 const Login = ({ onSubmit, onSwitchMode }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -28,15 +28,15 @@ const Login = ({ onSubmit, onSwitchMode }) => {
       // If user not verified → OTP flow
       if (res.status === 403 && data.message === "Please verify your email first") {
         toast.info("Please verify your email. OTP sent!");
-        
+        if (data.userId) setUserId(data.userId); // <-- Important: save userId
+
         const otpRes = await fetch(`${API_URL}/send-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email }),
         });
-        const otpData = await otpRes.json();
-        if (otpRes.ok) setOtpRequired(true);
-
+        await otpRes.json();
+        setOtpRequired(true);
         return;
       }
 
@@ -51,7 +51,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
       } else {
         toast.error(data.message || 'Login failed!');
       }
-    } catch {
+    } catch (error) {
       toast.error('Server error. Try again later.');
     } finally {
       setLoading(false);

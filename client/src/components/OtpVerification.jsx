@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
-const API_URL = 'https://taskly-7s40.onrender.com/api/users';
+const API_URL = 'https://taskly-1i5r.onrender.com/api/users';
 
 const OtpVerification = ({ userId, email, onVerified }) => {
   const [otp, setOtp] = useState("");
@@ -22,7 +22,7 @@ const OtpVerification = ({ userId, email, onVerified }) => {
 
       if (res.ok) {
         toast.success(data.message || "OTP verified!");
-        onVerified(); // Continue to login or app
+        onVerified();
       } else {
         toast.error(data.message || "Invalid OTP");
       }
