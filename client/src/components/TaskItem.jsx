@@ -3,7 +3,10 @@ import { Calendar, CheckCircle2, Clock, MoreVertical } from "lucide-react";
 import { format, isToday } from "date-fns";
 import axios from "axios";
 
-const API_BASE = "https://taskly-7s40.onrender.com/api/tasks";
+// const API_BASE = "https://taskly-7s40.onrender.com/api/tasks";
+const API_URL = 'https://taskly-1i5r.onrender.com/api/tasks';
+
+
 
 const getPriorityBadgeColor = (priority) => {
   switch (priority?.toLowerCase()) {
@@ -30,7 +33,7 @@ const TaskItem = ({ task, onRefresh, onEdit }) => {
     const newStatus = !isCompleted;
     setIsCompleted(newStatus);
     try {
-      await axios.put(`${API_BASE}/${task._id}/gp`, {
+      await axios.put(`${API_URL}/${task._id}/gp`, {
         completed: newStatus
       }, { headers: getAuthHeaders() });
       onRefresh?.();

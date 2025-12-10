@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import OtpVerification from "./OtpVerification";
 
-const API_URL = "https://taskly-7s40.onrender.com/api/users";
+const API_URL = 'https://taskly-1i5r.onrender.com/api/users';
+
 
 const Signup = ({ onSubmit, onSwitchMode }) => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });

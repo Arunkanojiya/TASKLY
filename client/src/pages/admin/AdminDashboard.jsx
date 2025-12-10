@@ -14,7 +14,7 @@ const AdminDashboard = ({ admin }) => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('https://taskly-7s40.onrender.com/api/admin/users', { headers });
+      const res = await axios.get('https://taskly-1i5r.onrender.com/api/admin/users', { headers });
       setUsers(res.data.users || []);
     } catch (err) {
       console.error('Fetch Users Error:', err.response?.data || err.message);
@@ -23,7 +23,7 @@ const AdminDashboard = ({ admin }) => {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get('https://taskly-7s40.onrender.com/api/admin/tasks', { headers });
+      const res = await axios.get('https://taskly-1i5r.onrender.com/api/admin/tasks', { headers });
       setTasks(res.data.tasks || []);
     } catch (err) {
       console.error('Fetch Tasks Error:', err.response?.data || err.message);
