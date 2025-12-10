@@ -30,10 +30,8 @@ const PORT = process.env.PORT || 2000;
 app.use(
   cors({
     origin: [
-      "https://taskly-sandy.vercel.app",
-      "https://taskly-navy-seven.vercel.app",
-      "https://vercel.com/arun-kanojiyas-projects/taskly/GihaKmyCzYcRRbk9Wsv3rQHizh1T",
       "http://localhost:5173",
+      "https://taskly-navy-seven.vercel.app",
     ],
     credentials: true,
   })
@@ -50,7 +48,7 @@ app.use('/api/admin', adminRoutes);
 
 connectDB();
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 export default app;
