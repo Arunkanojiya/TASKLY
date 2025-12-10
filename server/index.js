@@ -31,7 +31,9 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://taskly-navy-seven.vercel.app",
+      "taskly-sandy.vercel.app",
+      "https://taskly-sandy.vercel.app",
+      // "https://taskly-navy-seven.vercel.app",
     ],
     credentials: true,
   })
