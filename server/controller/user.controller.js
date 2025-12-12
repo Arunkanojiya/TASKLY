@@ -9,6 +9,7 @@ import { generateOtp, sendEmail } from "../utils/mail.js";
 // ---------------------------
 export const sendRegisterOtpController = async (req, res) => {
   try {
+    console.log("OTP Controller hit", req.body.email);
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
@@ -88,6 +89,7 @@ export const sendRegisterOtpController = async (req, res) => {
 // ---------------------------
 export const verifyRegisterOtpController = async (req, res) => {
   try {
+    console.log("Verify OTP Controller hit →", req.body);
     const { userId, otp } = req.body;
 
     if (!userId || !otp) {
