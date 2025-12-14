@@ -1,37 +1,53 @@
-    import nodemailer from "nodemailer";
-    import otpGenerator from "otp-generator";
-    import dotenv from "dotenv";
+import axios from "axios";
+import otpGenerator from "otp-generator";
+import dotenv from "dotenv";
 
-    dotenv.config();
+dotenv.config();
 
-    const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.SMTP_MAIL,
-        pass: process.env.SMTP_PASSWORD,
-    },
-    });
-
-    export const sendEmail = async (to, subject, text) => {
-    try {
-        await transporter.sendMail({
-        from: `My App <${process.env.SMTP_MAIL}>`,
-        to,
+/**
+ * Send email using Brevo Email API (NO SMTP)
+ */
+export const sendEmail = async (to, subject, text) => {
+  try {
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "My App",
+          email: "smtp-relay.brevo.com" // must be verified in Brevo
+        },
+        to: [{ email: to }],
         subject,
-        text,
-        });
-        console.log("Email sent!");
-    } catch (error) {
-        console.log("Email Error:", error.message);
-        throw error;
-    }
-    };
+        htmlContent: `
+          <p>${text}</p>
+        `
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json"
+        }
+      }
+    );
 
-    export const generateOtp = () => {
-    return otpGenerator.generate(6, {
-        digits: true,
-        lowerCaseAlphabets: false,
-        upperCaseAlphabets: false,
-        specialChars: false,
-    });
-    };
+    console.log("Email sent via Brevo API");
+  } catch (error) {
+    console.error(
+      "Brevo Email Error:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+};
+
+/**
+ * Generate 6-digit OTP
+ */
+export const generateOtp = () => {
+  return otpGenerator.generate(6, {
+    digits: true,
+    lowerCaseAlphabets: false,
+    upperCaseAlphabets: false,
+    specialChars: false,
+  });
+};
