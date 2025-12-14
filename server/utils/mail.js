@@ -14,7 +14,7 @@ export const sendEmail = async (to, subject, text) => {
       {
         sender: {
           name: "My App",
-          email: "smtp-relay.brevo.com" // must be verified in Brevo
+          email: process.env.BREVO_VERIFIED_EMAIL // must be verified in Brevo
         },
         to: [{ email: to }],
         subject,
