@@ -4,31 +4,37 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const sendEmail = async (to, subject, text) => {
+export const sendEmail = async (to, subject, otp) => {
   try {
-    await axios.post(
+    const response = await axios.post(
       "https://api.brevo.com/v3/smtp/email",
       {
         sender: {
           name: "My App",
-          email: process.env.BREVO_VERIFIED_EMAIL // MUST be verified
+          email: process.env.BREVO_SENDER_EMAIL, // VERIFIED EMAIL
         },
-        to: [{ email: to }],
+        to: [
+          {
+            email: to,
+          },
+        ],
         subject,
         htmlContent: `
-          <p>${text}</p>
-        `
+          <h3>Your OTP</h3>
+          <p><b>${otp}</b></p>
+          <p>This OTP is valid for 10 minutes.</p>
+        `,
       },
       {
         headers: {
-          "api-key": process.env.BREVO_API_KEY,
+          "api-key": process.env.BREVO_API_KEY, // xkeysib-****
           "Content-Type": "application/json",
-          "accept": "application/json"
-        }
+          accept: "application/json",
+        },
       }
     );
 
-    console.log("✅ Email sent via Brevo API");
+    console.log("✅ Email sent:", response.data.messageId);
   } catch (error) {
     console.error(
       "❌ Brevo Email Error:",
@@ -38,10 +44,11 @@ export const sendEmail = async (to, subject, text) => {
   }
 };
 
-export const generateOtp = () =>
-  otpGenerator.generate(6, {
+export const generateOtp = () => {
+  return otpGenerator.generate(6, {
     digits: true,
     lowerCaseAlphabets: false,
     upperCaseAlphabets: false,
     specialChars: false,
   });
+};
