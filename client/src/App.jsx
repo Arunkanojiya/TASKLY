@@ -18,7 +18,7 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import AllTasks from "./pages/admin/AllTasks";
 import AdminProfile from "./components/admin/AdminProfile";
 
-const API_URL = "https://taskly-7s40.onrender.com";
+const API_URL = "https://taskly-1i5r.onrender.com";
 const API_TASKS = `${API_URL}/api/tasks`;
 
 const App = () => {

@@ -30,6 +30,7 @@ const Layout = ({ user, onLogout, tasks, refreshTasks }) => {
       };
 
       if (taskData._id) {
+        
         await fetch(`https://taskly-1i5r.onrender.com/api/tasks/${taskData._id}/gp`, {
           method: "PUT",
           headers,

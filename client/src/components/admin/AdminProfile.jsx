@@ -29,7 +29,7 @@ const AdminProfile = () => {
   // Fetch admin
   const fetchAdmin = async () => {
     try {
-      const res = await axios.get("https://taskly-7s40.onrender.com/api/admin/me", { headers });
+      const res = await axios.get("https://taskly-1i5r.onrender.com/api/admin/me", { headers });
       if (res.data.admin) setProfile({ name: res.data.admin.name, email: res.data.admin.email });
     } catch (err) {
       toast.error("Failed to load profile");
@@ -48,7 +48,7 @@ const AdminProfile = () => {
   const saveProfile = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put("https://taskly-7s40.onrender.com/api/admin/me", profile, { headers });
+      const res = await axios.put("https://taskly-1i5r.onrender.com/api/admin/me", profile, { headers });
       if (res.data.success) toast.success("Profile updated successfully");
       else toast.error(res.data.message || "Failed to update");
     } catch (err) {
@@ -61,7 +61,7 @@ const AdminProfile = () => {
     e.preventDefault();
     if (password.new !== password.confirm) return toast.error("Passwords do not match");
     try {
-      const res = await axios.put("https://taskly-7s40.onrender.com/api/admin/password", { oldPassword: password.current, newPassword: password.new }, { headers });
+      const res = await axios.put("https://taskly-1i5r.onrender.com/api/admin/password", { oldPassword: password.current, newPassword: password.new }, { headers });
       if (res.data.success) {
         toast.success("Password changed successfully");
         setPassword({ current: "", new: "", confirm: "" });
